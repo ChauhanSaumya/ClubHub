@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClubHub - Explore Clubs</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy-blue: #1E3A8A;
+            --emerald-green: #10B981;
+            --soft-grey: #F3F4F6;
+            --warm-yellow: #FBBF24;
+            --coral: #FB923C;
+            --charcoal: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--soft-grey);
+            color: var(--charcoal);
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.5;
+            padding-top: 4rem;
+        }
+
+        .navbar {
+            background-color: var(--navy-blue);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--warm-yellow);
+        }
+
+        .page-header {
+            background: linear-gradient(rgba(30, 58, 138, 0.9), rgba(30, 58, 138, 0.9)),
+                        url('/api/placeholder/1200/300');
+            background-size: cover;
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .page-header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .categories-section {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--navy-blue);
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            text-decoration: none;
+            color: var(--charcoal);
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-image {
+            width: 100%;
+            height: 160px;
+            background: var(--navy-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .category-content {
+            padding: 1.5rem;
+        }
+
+        .category-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.25rem;
+            color: var(--navy-blue);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .category-stats {
+            font-size: 0.9rem;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+        }
+
+        .featured-clubs {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--charcoal);
+        }
+
+        .featured-clubs span {
+            display: inline-block;
+            background: var(--soft-grey);
+            padding: 0.2rem 0.8rem;
+            border-radius: 1rem;
+            margin: 0.2rem;
+        }
+
+        .filters-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .filter-group label {
+            font-weight: 600;
+            color: var(--navy-blue);
+        }
+
+        .filter-select {
+            padding: 0.5rem;
+            border: 1px solid var(--soft-grey);
+            border-radius: 0.5rem;
+            font-family: inherit;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="#" class="logo">ClubHub</a>
+            <div class="nav-links">
+                <a href="#">Home</a>
+                <a href="#" style="color: var(--warm-yellow)">Clubs</a>
+                <a href="#">Events</a>
+                <a href="#">Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <h1>Explore Campus Clubs</h1>
+        <p>Find your perfect fit among our diverse club categories</p>
+    </header>
+
+    <main>
+        <section class="categories-section">
+            <div class="filters-section">
+                <div class="filters-grid">
+                    <div class="filter-group">
+                        <label for="category">Category</label>
+                        <select id="category" class="filter-select">
+                            <option value="">All Categories</option>
+                            <option value="tech">Technical</option>
+                            <option value="cultural">Cultural</option>
+                            <option value="sports">Sports</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="activity">Activity Level</label>
+                        <select id="activity" class="filter-select">
+                            <option value="">Any Activity Level</option>
+                            <option value="very-active">Very Active</option>
+                            <option value="active">Active</option>
+                            <option value="casual">Casual</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="membership">Membership Status</label>
+                        <select id="membership" class="filter-select">
+                            <option value="">All Statuses</option>
+                            <option value="open">Open</option>
+                            <option value="closed">Closed</option>
+                            <option value="waitlist">Waitlist</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="categories-grid">
+                <a href="#" class="category-card">
+                    <div class="category-image">🖥️</div>
+                    <div class="category-content">
+                        <h3 class="category-title">Technical Clubs</h3>
+                        <div class="category-stats">5 Active Clubs</div>
+                        <div class="featured-clubs">
+                            <span>GFG</span>
+                            <span>OSCode</span>
+                            <span>Wappers</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="category-card">
+                    <div class="category-image">💃</div>
+                    <div class="category-content">
+                        <h3 class="category-title">Dance Clubs</h3>
+                        <div class="category-stats">2 Active Clubs</div>
+                        <div class="featured-clubs">
+                            <span>Street Dancers</span>
+                            <span>Dance Crew</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="category-card">
+                    <div class="category-image">🎵</div>
+                    <div class="category-content">
+                        <h3 class="category-title">Music Clubs</h3>
+                        <div class="category-stats">1 Active Club</div>
+                        <div class="featured-clubs">
+                            <span>Sangeha</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="category-card">
+                    <div class="category-image">⚡</div>
+                    <div class="category-content">
+                        <h3 class="category-title">Electronics</h3>
+                        <div class="category-stats">1 Active Club</div>
+                        <div class="featured-clubs">
+                            <span>Samarthaya</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClubHub - Club Registration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy-blue: #003366;
+            --emerald-green: #2ECC71;
+            --gold: #FFD700;
+            --light-gray: #F4F4F4;
+            --dark-charcoal: #333333;
+            --bright-cyan: #00BCD4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--light-gray);
+            color: var(--dark-charcoal);
+            line-height: 1.5;
+        }
+
+        header {
+            background-color: var(--navy-blue);
+            color: white;
+            padding: 1rem 2rem;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 {
+            font-family: 'Merriweather', serif;
+            font-size: 2rem;
+            letter-spacing: 0.5px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .registration-card {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .club-info {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .club-name {
+            font-family: 'Merriweather', serif;
+            color: var(--navy-blue);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .club-details {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--bright-cyan);
+            box-shadow: 0 0 0 2px rgba(0,188,212,0.2);
+        }
+
+        .required {
+            color: #e74c3c;
+            margin-left: 0.2rem;
+        }
+
+        .checkbox-group {
+            margin-top: 0.5rem;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .submit-btn {
+            background-color: var(--emerald-green);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--bright-cyan);
+        }
+
+        .cancel-btn {
+            background-color: #fff;
+            color: var(--dark-charcoal);
+            border: 1px solid #ddd;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .cancel-btn:hover {
+            background-color: #f5f5f5;
+            border-color: #ccc;
+        }
+
+        .form-note {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Registration</h1>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="registration-card">
+            <div class="club-info">
+                <h2 class="club-name">Photography Club</h2>
+                <div class="club-details">
+                    <p>Meeting Time: Every Tuesday, 4:00 PM - 6:00 PM</p>
+                    <p>Location: Arts Building, Room 204</p>
+                    <p>Membership Fee: $20/semester</p>
+                </div>
+            </div>
+
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label for="fullName">Full Name<span class="required">*</span></label>
+                    <input type="text" id="fullName" name="fullName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="studentId">Student ID<span class="required">*</span></label>
+                    <input type="text" id="studentId" name="studentId" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">College Email<span class="required">*</span></label>
+                    <input type="email" id="email" name="email" required>
+                    <div class="form-note">Please use your college email address (@college.edu)</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+
+                <div class="form-group">
+                    <label for="year">Academic Year<span class="required">*</span></label>
+                    <select id="year" name="year" required>
+                        <option value="">Select your year</option>
+                        <option value="freshman">Freshman</option>
+                        <option value="sophomore">Sophomore</option>
+                        <option value="junior">Junior</option>
+                        <option value="senior">Senior</option>
+                        <option value="graduate">Graduate</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="experience">Previous Experience</label>
+                    <textarea id="experience" name="experience" rows="4" 
+                        placeholder="Tell us about any relevant experience or skills you have"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Areas of Interest<span class="required">*</span></label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="interests" value="portrait">
+                            Portrait Photography
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="interests" value="landscape">
+                            Landscape Photography
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="interests" value="event">
+                            Event Photography
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="interests" value="editing">
+                            Photo Editing
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="agreement" required>
+                        I agree to the club's rules and policies<span class="required">*</span>
+                    </label>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="submit-btn">Submit Application</button>
+                    <button type="button" class="cancel-btn">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

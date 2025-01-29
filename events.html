@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClubHub - Events</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy-blue: #003366;
+            --emerald-green: #2ECC71;
+            --gold: #FFD700;
+            --light-gray: #F4F4F4;
+            --dark-charcoal: #333333;
+            --bright-cyan: #00BCD4;
+            --event-highlight: #FFE4B5;
+            --pale-blue: #E3F2FD;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--light-gray);
+            color: var(--dark-charcoal);
+            line-height: 1.5;
+        }
+
+        header {
+            background-color: var(--navy-blue);
+            color: white;
+            padding: 1rem 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 {
+            font-family: 'Merriweather', serif;
+            font-size: 1.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .calendar-view {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .calendar-header h2 {
+            font-family: 'Merriweather', serif;
+            color: var(--navy-blue);
+            font-size: 1.5rem;
+        }
+
+        .calendar-nav button {
+            background-color: var(--pale-blue);
+            color: var(--navy-blue);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+            margin: 0 0.25rem;
+        }
+
+        .calendar-nav button:hover {
+            background-color: var(--bright-cyan);
+            color: white;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .weekday-header {
+            text-align: center;
+            font-weight: 500;
+            color: var(--navy-blue);
+            padding: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .calendar-day {
+            aspect-ratio: 1;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 0.5rem;
+            min-height: 80px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .calendar-day .date {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .calendar-day.has-event {
+            background-color: var(--event-highlight);
+            border-color: var(--gold);
+        }
+
+        .calendar-day.has-event:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .event-dot {
+            height: 8px;
+            width: 8px;
+            background-color: var(--emerald-green);
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 4px;
+        }
+
+        .event-mini {
+            font-size: 0.8rem;
+            color: var(--navy-blue);
+            background: rgba(255, 255, 255, 0.7);
+            padding: 0.25rem;
+            border-radius: 4px;
+            margin-top: 0.25rem;
+        }
+
+        .event-list {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .event-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .event-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .event-title {
+            font-family: 'Merriweather', serif;
+            color: var(--navy-blue);
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-details {
+            display: flex;
+            gap: 2rem;
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .register-btn {
+            background-color: var(--emerald-green);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+            margin-top: 1rem;
+            display: inline-block;
+        }
+
+        .register-btn:hover {
+            background-color: var(--bright-cyan);
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Events</h1>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="calendar-view">
+            <div class="calendar-header">
+                <h2>January 2025</h2>
+                <div class="calendar-nav">
+                    <button>Previous</button>
+                    <button>Next</button>
+                </div>
+            </div>
+
+            <div class="calendar-grid">
+                <!-- Weekday headers -->
+                <div class="weekday-header">Sun</div>
+                <div class="weekday-header">Mon</div>
+                <div class="weekday-header">Tue</div>
+                <div class="weekday-header">Wed</div>
+                <div class="weekday-header">Thu</div>
+                <div class="weekday-header">Fri</div>
+                <div class="weekday-header">Sat</div>
+
+                <!-- First week -->
+                <div class="calendar-day"><div class="date">1</div></div>
+                <div class="calendar-day"><div class="date">2</div></div>
+                <div class="calendar-day"><div class="date">3</div></div>
+                <div class="calendar-day"><div class="date">4</div></div>
+                <div class="calendar-day has-event">
+                    <div class="date">5<span class="event-dot"></span></div>
+                    <div class="event-mini">Chess Club</div>
+                </div>
+                <div class="calendar-day"><div class="date">6</div></div>
+                <div class="calendar-day"><div class="date">7</div></div>
+
+                <!-- Second week -->
+                <div class="calendar-day"><div class="date">8</div></div>
+                <div class="calendar-day"><div class="date">9</div></div>
+                <div class="calendar-day"><div class="date">10</div></div>
+                <div class="calendar-day"><div class="date">11</div></div>
+                <div class="calendar-day"><div class="date">12</div></div>
+                <div class="calendar-day"><div class="date">13</div></div>
+                <div class="calendar-day"><div class="date">14</div></div>
+
+                <!-- Days with events -->
+                <div class="calendar-day has-event">
+                    <div class="date">15<span class="event-dot"></span></div>
+                    <div class="event-mini">Photo Exhibition</div>
+                </div>
+                <!-- Add remaining days as needed -->
+                <div class="calendar-day"><div class="date">16</div></div>
+                <div class="calendar-day"><div class="date">17</div></div>
+                <div class="calendar-day"><div class="date">18</div></div>
+                <div class="calendar-day"><div class="date">19</div></div>
+                <div class="calendar-day"><div class="date">20</div></div>
+                <div class="calendar-day"><div class="date">21</div></div>
+                <div class="calendar-day"><div class="date">22</div></div>
+                <div class="calendar-day"><div class="date">23</div></div>
+                <div class="calendar-day"><div class="date">24</div></div>
+                <div class="calendar-day"><div class="date">25</div></div>
+                <div class="calendar-day"><div class="date">26</div></div>
+                <div class="calendar-day"><div class="date">27</div></div>
+                <div class="calendar-day"><div class="date">28</div></div>
+                <div class="calendar-day"><div class="date">29</div></div>
+                <div class="calendar-day"><div class="date">30</div></div>
+                <div class="calendar-day"><div class="date">31</div></div>
+            </div>
+        </section>
+
+        <section class="event-list">
+            <div class="event-card">
+                <h3 class="event-title">Photography Club Exhibition</h3>
+                <div class="event-details">
+                    <span>Jan 15, 2025</span>
+                    <span>3:00 PM - 6:00 PM</span>
+                    <span>Art Gallery</span>
+                </div>
+                <p class="event-description">
+                    Join us for our annual photography exhibition featuring works from club members.
+                    Refreshments will be served.
+                </p>
+                <button class="register-btn">Register for Event</button>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
