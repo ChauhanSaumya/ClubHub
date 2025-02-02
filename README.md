@@ -4,7 +4,7 @@
 
 ## Description
 
-ClubHub is a web platform designed to help students discover, join, and connect with all campus clubs in one convenient location. It provides a comprehensive directory of clubs, an event calendar, registration and application systems, and a news section for clubs to share updates and achievements.
+ClubHub is a web platform designed to help students discover, join, and connect with all campus clubs in one convenient location. It provides a comprehensive directory of clubs, an event calendar, registration and application systems.
 
 ## Features
 
